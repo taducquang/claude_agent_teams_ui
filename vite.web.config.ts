@@ -39,4 +39,7 @@ export default defineConfig({
       '@claude-teams/agent-graph': resolve(ROOT, 'packages/agent-graph/src/index.ts'),
     },
   },
+  rollupOptions: {
+    external: ['@features/recent-projects/main']
+  },  
 });
