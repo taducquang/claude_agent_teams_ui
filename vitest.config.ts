@@ -27,4 +27,7 @@ export default defineConfig({
       'react-dom': resolve(__dirname, 'node_modules/react-dom'),
     },
   },
+  rollupOptions: {
+    external: ['@features/recent-projects/main']
+  },  
 });
