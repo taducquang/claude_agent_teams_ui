@@ -87,6 +87,7 @@ export default defineConfig({
   plugins: [nativeModuleStub(), electronStub()],
   resolve: {
     alias: {
+      '@features': resolve(ROOT, 'src/features'),
       '@main': resolve(ROOT, 'src/main'),
       '@shared': resolve(ROOT, 'src/shared'),
       '@preload': resolve(ROOT, 'src/preload')
