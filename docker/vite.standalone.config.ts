@@ -98,7 +98,7 @@ export default defineConfig({
     // Force Vite to bundle these instead of externalizing them
     // (SSR mode externalizes all node_modules by default)
     // noExternal: true
-    external: ['ssh2', 'cpu-features', 'electron'],
+    external: ['ssh2', 'cpu-features'],
   },
   build: {
     outDir: 'dist-standalone',
@@ -113,7 +113,6 @@ export default defineConfig({
         entryFileNames: '[name].cjs'
       },
       external: (id) => {
-        if (id === 'electron' || id.startsWith('electron/')) return true
         // Externalize Node.js built-ins
         if (id.startsWith('node:')) return true
         if (nodeBuiltins.has(id)) return true
