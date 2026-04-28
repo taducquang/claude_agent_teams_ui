@@ -91,13 +91,14 @@ export default defineConfig({
       '@main': resolve(ROOT, 'src/main'),
       '@shared': resolve(ROOT, 'src/shared'),
       '@preload': resolve(ROOT, 'src/preload')
-    }
+    },
+    conditions: ['node']
   },
   ssr: {
     // Force Vite to bundle these instead of externalizing them
     // (SSR mode externalizes all node_modules by default)
     // noExternal: true
-    external: ['ssh2', 'cpu-features', 'electron'], 
+    external: ['ssh2', 'cpu-features', 'electron'],
   },
   build: {
     outDir: 'dist-standalone',
@@ -112,6 +113,7 @@ export default defineConfig({
         entryFileNames: '[name].cjs'
       },
       external: (id) => {
+        if (id === 'electron' || id.startsWith('electron/')) return true
         // Externalize Node.js built-ins
         if (id.startsWith('node:')) return true
         if (nodeBuiltins.has(id)) return true
@@ -119,12 +121,8 @@ export default defineConfig({
         if (externalPackages.some(pkg => id === pkg || id.startsWith(pkg + '/'))) return true
         return false
       },
-      external: ['electron'],
     },
     minify: false,
     sourcemap: true
-  },
-  resolve: {
-    conditions: ['node']
-  } 
+  }
 })
