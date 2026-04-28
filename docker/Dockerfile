@@ -40,6 +40,7 @@ RUN corepack enable
 # Copy package files and install production-only dependencies
 # (fastify, @fastify/cors, @fastify/static are externalized from the bundle)
 COPY --from=builder /app/package.json /app/pnpm-lock.yaml ./
+RUN apt-get update && apt-get install -y python3 build-essential
 RUN pnpm install --frozen-lockfile --prod
 
 # Copy built standalone server and renderer output
