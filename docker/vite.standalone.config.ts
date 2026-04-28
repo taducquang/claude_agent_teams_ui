@@ -118,9 +118,13 @@ export default defineConfig({
         // Externalize packages that break when bundled
         if (externalPackages.some(pkg => id === pkg || id.startsWith(pkg + '/'))) return true
         return false
-      }
+      },
+      external: ['electron'],
     },
     minify: false,
     sourcemap: true
-  }
+  },
+  resolve: {
+    conditions: ['node']
+  } 
 })
