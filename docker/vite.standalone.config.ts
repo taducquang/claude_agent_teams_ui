@@ -97,7 +97,7 @@ export default defineConfig({
     // Force Vite to bundle these instead of externalizing them
     // (SSR mode externalizes all node_modules by default)
     // noExternal: true
-    external: ['ssh2', 'cpu-features'], 
+    external: ['ssh2', 'cpu-features', 'electron'], 
   },
   build: {
     outDir: 'dist-standalone',
