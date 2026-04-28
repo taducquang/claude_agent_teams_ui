@@ -41,7 +41,10 @@ RUN corepack enable
 # (fastify, @fastify/cors, @fastify/static are externalized from the bundle)
 COPY --from=builder /app/package.json /app/pnpm-lock.yaml ./
 RUN apt-get update && apt-get install -y python3 build-essential
-RUN pnpm install --frozen-lockfile --prod
+
+RUN pnpm install --frozen-lockfile && \
+    pnpm exec electron-rebuild -f -o node-pty,ssh2,cpu-features && \
+    pnpm prune --prod
 
 # Copy built standalone server and renderer output
 COPY --from=builder /app/dist-standalone ./dist-standalone
