@@ -40,7 +40,7 @@ RUN corepack enable
 # Copy package files and install production-only dependencies
 # (fastify, @fastify/cors, @fastify/static are externalized from the bundle)
 COPY --from=builder /app/package.json /app/pnpm-lock.yaml ./
-RUN pnpm install --frozen-lockfile --prod
+RUN pnpm install --frozen-lockfile --prod --ignore-scriptsd
 
 # Copy built standalone server and renderer output
 COPY --from=builder /app/dist-standalone ./dist-standalone
