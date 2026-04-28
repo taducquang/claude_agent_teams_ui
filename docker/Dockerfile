@@ -11,9 +11,8 @@
 FROM node:20-slim AS builder
 
 RUN apt-get update && \
-    apt-get install -y python3 build-essential && \
+    apt-get install -y python3 build-essential g++ make && \
     rm -rf /var/lib/apt/lists/*
-RUN npm install -g node-gyp
     
 WORKDIR /app
 
