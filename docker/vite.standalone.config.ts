@@ -90,7 +90,9 @@ export default defineConfig({
       '@features': resolve(ROOT, 'src/features'),
       '@main': resolve(ROOT, 'src/main'),
       '@shared': resolve(ROOT, 'src/shared'),
-      '@preload': resolve(ROOT, 'src/preload')
+      '@preload': resolve(ROOT, 'src/preload'),
+      electron: resolve(__dirname, './electron.stub.ts'),
+      'electron-updater': resolve(__dirname, './electron.stub.ts')
     },
     conditions: ['node']
   },
